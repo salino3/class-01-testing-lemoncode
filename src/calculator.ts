@@ -1,18 +1,11 @@
-import { isLowerThanFive } from "./business/calculator.business.js";
+import { isLowerThan, max } from './business/calculator.business.js';
 
-export const add = (
-  a: number,
-  b: number
-): number => {
+export const add = (a: number, b: number): number => {
   const result = a + b;
 
-  if (result < 5) {
-    isLowerThanFive(result);
-  }
+  if (result < max) {
+    isLowerThan(result, max);
+  };
 
   return result;
 };
-
-
-
-

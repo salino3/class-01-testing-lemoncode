@@ -1,7 +1,18 @@
 import * as calculator from './calculator.js';
 import * as business from './business/calculator.business.js';
 
+// Mock  -- it doesn't work..
+// jest.mock('./business', () => ({
+//   __esModule: true,
+//   ...jest.requireActual('./business')
+// }));
+
 describe('Calculator specs', () => {
+
+  // afterEach(() => {
+  //   jest.restoreAllMocks();
+  // });
+
 
   describe('add', () => {
     it('should return 4 when passing A equals 2 and B equals 2', () => {
@@ -24,35 +35,24 @@ describe('Calculator specs', () => {
        const a = 2;
        const b = 2;
 
-
        // Spy
       //  const isLowerThanFive = jest.fn();
 
       // Stub
-      const isLowerThanFive = jest.spyOn(business, 'isLowerThanFive');
+      const isLowerThan = jest.spyOn(business, 'isLowerThan')
+      .mockImplementation((result) => {
+        console.log(`This is the result ${result}`);
+      });
 
        // Act
        const result = calculator.add(a, b);
 
        // Assert
        expect(result).toEqual(4);
-       expect(isLowerThanFive).toHaveBeenCalled();
-       expect(isLowerThanFive).toHaveBeenCalledWith(4);
+       expect(isLowerThan).toHaveBeenCalled();
+       expect(isLowerThan).toHaveBeenCalledWith(4, 6);
      });
   });
 
-  describe('multiply', () => {
-    it('multuiply spec', () => {
-
-    });
-  });
-
 });
-
-
-
-
-
-
-
 
